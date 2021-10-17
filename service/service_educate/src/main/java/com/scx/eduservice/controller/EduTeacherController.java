@@ -47,7 +47,7 @@ public class EduTeacherController {
     /**
      * 分页查询讲师
      */
-    @GetMapping("getPageTeacher/{current}/{limit}")
+    @PostMapping("getPageTeacher/{current}/{limit}")
     public R getPageTeacher(@RequestBody(required = false) EduTeacher teacher,
                             @PathVariable Integer current,
                             @PathVariable Integer limit){
@@ -56,12 +56,11 @@ public class EduTeacherController {
         if(!StringUtils.isEmpty(teacher.getName())){
             wrapper.like("name",teacher.getName());
         }
-        Page<EduTeacher> page = (Page<EduTeacher>) teacherService.page(teacherPage,wrapper);
-        long total = page.getTotal();
-        long pages = page.getPages();
+        teacherService.page(teacherPage,wrapper);
+        long total = teacherPage.getTotal();
+        List<EduTeacher> records = teacherPage.getRecords();
         System.out.println("total = "+total);
-        System.out.println("pages = "+pages);
-        return R.ok().data("page",page).data("total",total).data("pages",pages);
+        return R.ok().data("total",total).data("records",records);
     }
 
     /**
