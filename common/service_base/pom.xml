@@ -10,6 +10,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>service_base</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>com.scx</groupId>
+            <artifactId>common_utils</artifactId>
+            <version>2.2.1.RELEASE</version>
+        </dependency>
+    </dependencies>
 
 
 </project>
